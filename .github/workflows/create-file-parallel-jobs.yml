@@ -1,4 +1,4 @@
-name: Create artifacts
+name: Create artifacts (parallel jobs)
 
 on:
   schedule:

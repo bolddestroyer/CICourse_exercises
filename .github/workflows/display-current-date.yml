@@ -12,4 +12,4 @@ jobs:
     steps:
     - name: Print current date on console
       run: |
-        echo "Current date: " $(date +'%d-%m-%Y %H-%M-%S')
+        echo "Current date: " $(date +'%d/%m/%Y %H:%M:%S')

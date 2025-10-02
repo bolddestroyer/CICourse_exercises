@@ -12,4 +12,4 @@ jobs:
     steps:
     - name: Print current date on console
       run: |
-        echo "Current date: ${{ date +'%Y-%m-%dT%H-%M-%S' }}"
+        echo "Current date: ${ date +'%Y-%m-%dT%H-%M-%S' }"

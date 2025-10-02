@@ -1,14 +1,13 @@
-name: Display the OS
+name: Display OS
 
 on:
   workflow_dispatch: # Manual trigger
 
 jobs:
-  display_os:
-    timeout-minutes: 1
+  display-env-info:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 📦 Display OS
+    - name: Print OS on console
       run: |
         echo "Running job on: ${{ runner.os }}"

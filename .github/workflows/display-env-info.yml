@@ -1,4 +1,4 @@
-name: Display OS
+name: Display the OS
 
 on:
   workflow_dispatch: # Manual trigger
@@ -10,4 +10,5 @@ jobs:
 
     steps:
     - name: 📦 Display OS
-      run: echo "${{ runner.os }}"
+      run: |
+        echo "Running job on: ${{ runner.os }}"

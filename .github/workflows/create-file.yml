@@ -9,10 +9,27 @@ jobs:
 
     steps:
     - name: Create a file
-      run: |
-        echo "Current date:" $(date +'%d/%m/%Y %H:%M:%S') > current_date.txt
+      run: echo "Current date:" $(date +'%d/%m/%Y %H:%M:%S') > current_date.txt
+        
     - name: Archive file as artifact
       uses: actions/upload-artifact@v4
       with:
         name: current_date_artifact
         path: current_date.txt
+
+
+  create-file-with-env-var:
+    runs-on: ubuntu-latest
+  
+    steps:
+    - name: Create a file
+      run: echo $(date) > current_date.txt
+
+    - name: Store date as variable
+      run: echo "DATE=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
+        
+    - name: Archive file as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: current_date_artifact_${{ env.DATE }}
+        path: current_date_env_var.txt

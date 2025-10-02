@@ -1,6 +1,8 @@
 name: Create artifacts
 
 on:
+  schedule:
+    - cron: "0 */6 * * 1-5"
   workflow_dispatch: # Manual trigger
 
 jobs:

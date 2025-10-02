@@ -23,7 +23,7 @@ jobs:
   
     steps:
     - name: Create a file
-      run: echo $(date) > current_date.txt
+      run: echo $(date) > current_date_env_var.txt
 
     - name: Store date as variable
       run: echo "DATE=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV

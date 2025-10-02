@@ -1,35 +1,34 @@
-name: Simple txt artifact
+name: Create artifacts
 
 on:
   workflow_dispatch: # Manual trigger
 
 jobs:
-  create-file:
+  display-env-info:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Create a file
-      run: echo "Current date:" $(date +'%d/%m/%Y %H:%M:%S') > current_date.txt
+    - name: Print OS on console
+      run: | 
+        echo "Running job on: ${{ runner.os }}"
+
         
-    - name: Archive file as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: current_date_artifact
-        path: current_date.txt
-
-
-  create-file-with-env-var:
+  create-artifacts:
     runs-on: ubuntu-latest
-  
-    steps:
-    - name: Create a file
-      run: echo $(date) > current_date_env_var.txt
 
-    - name: Store date as variable
+    steps:
+    - name: Create files
+      run: |
+        echo "Current date:" $(date +'%d/%m/%Y %H:%M:%S') > current_date.txt
+        echo $(date) > current_date_env_var.txt
+        
+    - name: Store date as an environment variable
       run: echo "DATE=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
-        
-    - name: Archive file as artifact
+      
+    - name: Archive files as artifact
       uses: actions/upload-artifact@v4
       with:
         name: current_date_artifact
-        path: current_date_env_var.txt
+        path: |
+          current_date.txt
+          current_date_env_var.txt

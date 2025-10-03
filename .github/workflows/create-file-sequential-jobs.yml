@@ -67,20 +67,3 @@ jobs:
         with:
           name: current_date_env_var_txt_artifact
           path: create_file_sequential_jobs_output
-
-
-  display-files-content:
-    runs-on: ubuntu-latest
-    if: ${{ success() }}
-    needs: [download-files]
-
-    steps:
-      - name: Display contents of current_date.txt
-        run: |
-          echo "Content of current_date.txt"
-          cat create_file_sequential_jobs_output/current_date_txt_artifact/current_date.txt
-
-      - name: Display contents of current_date_env_var.txt
-        run: |
-          echo "Content of current_date_env_var.txt"
-          cat create_file_sequential_jobs_output/current_date_env_var_txt_artifact/current_date_env_var.txt

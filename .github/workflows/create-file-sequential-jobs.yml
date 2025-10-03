@@ -19,24 +19,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create current_date.txt
+      - name: Create artifact current_date.txt
         run:  |
           echo "Creating file"
           echo "Current date:" $(date +'%d/%m/%Y %H:%M:%S') > current_date.txt
 
-      - name: Upload files to GitHub Actions Artifacts
+      - name: Upload artifact current_date.txt
         uses: actions/upload-artifact@v4
         with:
           name: current_date_artifact
           path: current_date.txt
-          retention-days: 1
 
 
   generate-file_2:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create current_date_env_var.txt
+      - name: Create artifact current_date_env_var.txt
         run: |
           echo "Creating file"
           echo $(date) > current_date_env_var.txt
@@ -44,12 +43,11 @@ jobs:
       - name: Store date as an environment variable
         run: echo "DATE=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
 
-      - name: Upload files to GitHub Actions Artifacts
+      - name: Upload artifact current_date_env_var.txt
         uses: actions/upload-artifact@v4
         with:
-          name: current_date_artifact
+          name: current_date_env_var_artifact
           path: current_date_env_var.txt
-          retention-days: 1
 
 
   download-and-process-file:
@@ -58,11 +56,17 @@ jobs:
     needs: [generate-file_1, generate-file_2]
 
     steps:
-      - name: Download artifact
+      - name: Download current_date.txt artifact
         uses: actions/download-artifact@v4
         with:
-          name: current_date_artifact
-          path: create_file_sequential_jobs_output  # Download into a folder
+          name: current_date_txt_artifact
+          path: create_file_sequential_jobs_output
+
+      - name: Download current_date_env_var.txt artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: current_date_env_var_artifact
+          path: create_file_sequential_jobs_output
 
       - name: Display contents of the downloaded files
         run: |

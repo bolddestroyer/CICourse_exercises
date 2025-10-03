@@ -72,7 +72,7 @@ jobs:
   display-files-content:
     runs-on: ubuntu-latest
     if: ${{ success() }}
-    needs: [generate-file_1, generate-file_2]
+    needs: [download-files]
 
     steps:
       - name: Display contents of current_date.txt

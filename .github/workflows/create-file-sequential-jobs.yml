@@ -46,7 +46,7 @@ jobs:
       - name: Upload artifact current_date_env_var.txt
         uses: actions/upload-artifact@v4
         with:
-          name: current_date_env_var_artifact
+          name: current_date_env_var_txt_artifact
           path: current_date_env_var.txt
 
 
@@ -65,10 +65,22 @@ jobs:
       - name: Download current_date_env_var.txt artifact
         uses: actions/download-artifact@v5
         with:
-          name: current_date_env_var_artifact
+          name: current_date_env_var_txt_artifact
           path: create_file_sequential_jobs_output
 
-      - name: Display contents of the downloaded files
+
+  display-files-content:
+    runs-on: ubuntu-latest
+    if: ${{ success() }}
+    needs: [generate-file_1, generate-file_2]
+
+    steps:
+      - name: Display contents of current_date.txt
         run: |
-          cat create_file_sequential_jobs_output/current_date.txt
-          cat create_file_sequential_jobs_output/current_date_env_var.txt
+          echo "Content of current_date.txt"
+          cat create_file_sequential_jobs_output/current_date_txt_artifact/current_date.txt
+
+      - name: Display contents of current_date_env_var.txt
+        run: |
+          echo "Content of current_date_env_var.txt"
+          cat create_file_sequential_jobs_output/current_date_env_var_txt_artifact/current_date_env_var.txt

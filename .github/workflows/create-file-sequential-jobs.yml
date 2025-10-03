@@ -57,13 +57,13 @@ jobs:
 
     steps:
       - name: Download current_date.txt artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: current_date_txt_artifact
           path: create_file_sequential_jobs_output
 
       - name: Download current_date_env_var.txt artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: current_date_env_var_artifact
           path: create_file_sequential_jobs_output

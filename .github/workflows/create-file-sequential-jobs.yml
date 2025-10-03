@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print OS on console
-      run: |
-        echo "Running job on: ${{ runner.os }}"
+      - name: Print OS on console
+        run: |
+          echo "Running job on: ${{ runner.os }}"
 
 
   generate-file_1:
@@ -20,14 +20,14 @@ jobs:
 
     steps:
       - name: Create artifact current_date.txt
-        run:  |
+        run: |
           echo "Creating file"
           echo "Current date:" $(date +'%d/%m/%Y %H:%M:%S') > current_date.txt
 
-      - name: Upload artifact current_date.txt
-        uses: actions/upload-artifact@v4
+      - name: Upload current_date.txt artifact
+        uses: actions/upload-artifact@v5
         with:
-          name: current_date_artifact
+          name: current_date_txt_artifact
           path: current_date.txt
 
 
@@ -44,7 +44,7 @@ jobs:
         run: echo "DATE=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
 
       - name: Upload artifact current_date_env_var.txt
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: current_date_env_var_artifact
           path: current_date_env_var.txt

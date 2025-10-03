@@ -50,7 +50,7 @@ jobs:
           path: current_date_env_var.txt
 
 
-  download-and-process-files:
+  download-files:
     runs-on: ubuntu-latest
     if: ${{ success() }}
     needs: [generate-file_1, generate-file_2]
@@ -68,6 +68,13 @@ jobs:
           name: current_date_env_var_artifact
           path: create_file_sequential_jobs_output
 
+
+  display-files-contents:
+    runs-on: ubuntu-latest
+    if: ${{ success() }}
+    needs: [download-files]
+
+    steps:
       - name: Display contents of the downloaded files
         run: |
           cat create_file_sequential_jobs_output/current_date.txt

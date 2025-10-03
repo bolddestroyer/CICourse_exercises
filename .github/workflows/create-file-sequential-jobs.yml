@@ -50,5 +50,5 @@ jobs:
 
       - name: Display contents of the downloaded files
         run: |
-          cat downloaded_files/current_date.txt
-          cat downloaded_files/current_date_env_var.txt
+          cat create_file_sequential_jobs_output/current_date.txt
+          cat create_file_sequential_jobs_output/current_date_env_var.txt
